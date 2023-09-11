@@ -3,6 +3,7 @@ import airbnb from '../../assets/clients/airbnb.svg'
 import ge from '../../assets/clients/ge.svg'
 import googlecloud from '../../assets/clients/google-cloud.svg'
 import google from '../../assets/clients/google.svg'
+import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
 <div className="relative" id="home">
@@ -24,15 +25,15 @@ const HeroSection = () => {
                         >Get started</span
                       >
                     </a>
-                    <a
-                      href="/learnmore"
+                    <Link
+                      to="/l"
                       className="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-primary/10 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 sm:w-max"
                     >
                       <span
                         className="relative text-base font-semibold text-primary dark:text-white"
                         >Learn more</span
                       >
-                    </a>
+                    </Link>
                 </div>
                 <div className="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
                     <div className="text-left">

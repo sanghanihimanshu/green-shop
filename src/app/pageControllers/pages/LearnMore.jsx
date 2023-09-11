@@ -1,7 +1,10 @@
+import Box from "../../components/Box";
 const LearnMore = () => {
   return (
-    <div>LearnMore</div>
-  )
-}
+    <Box>
+      Learnmore
+    </Box>
+  );
+};
 
-export default LearnMore
+export default LearnMore;
