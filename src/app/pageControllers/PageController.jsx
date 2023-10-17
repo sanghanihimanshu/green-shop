@@ -13,7 +13,6 @@ const PageController = () => {
       <Routes>
         <Route path="/" element={ <Home/>}/>
         <Route path="learnmore" element={<LearnMore/>}/>
-        
       </Routes>
       </div>
       <AppFooter />

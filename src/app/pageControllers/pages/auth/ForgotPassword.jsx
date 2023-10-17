@@ -7,10 +7,12 @@ const ForgotPassword = () => {
     <div className="relative flex items-center justify-center">
       <div className="p-3 sm:p-8 rounded-3xl bg-white border border-gray-100 dark:shadow-none dark:border-gray-700 dark:bg-gray-800 bg-opacity-50 shadow-2xl shadow-gray-600/10 min-h-[500] sm:min-w-[480px] lg:min-w-[600px]">
         <div className="flex flex-col gap-y-6 m-6 sm:mx-auto sm:w-full sm:max-w-sm">
-          <div aria-hidden="true" className="flex space-x-1">
-            <div className="h-4 w-4 rounded-full bg-gray-900 dark:bg-white"></div>
-            <div className="h-6 w-2 bg-primary"></div>
-          </div>
+        <Link to={"/"}>
+              <div aria-hidden="true" className="flex space-x-1">
+                <div className="h-4 w-4 rounded-full bg-gray-900 dark:bg-white"></div>
+                <div className="h-6 w-2 bg-primary"></div>
+              </div>
+            </Link>
           <h2 className="lg:text-2xl font-bold text-gray-900 sm:text-2xl dark:text-white">
             Forgot Your Password
           </h2>
