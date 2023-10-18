@@ -11,7 +11,7 @@ import { local } from "../../../../utils/utils";
 import {useMutation} from 'react-query';
 import axois from 'axios'
 import { useEffect } from "react";
-import Loadcard from "./component/loadcard";
+import Loadcard from "./component/loadcard.js";
 const Dashboard = () => {
   const [islogin,setlogin] = useAtom(logdin)
   const mutation = useMutation(
