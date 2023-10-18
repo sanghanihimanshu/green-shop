@@ -1,8 +1,8 @@
 import  Container  from "./Container";
-import airbnb from '../../assets/clients/airbnb.svg'
-import ge from '../../assets/clients/ge.svg'
-import googlecloud from '../../assets/clients/google-cloud.svg'
-import google from '../../assets/clients/google.svg'
+// import airbnb from '../../assets/clients/airbnb.svg'
+// import ge from '../../assets/clients/ge.svg'
+// import googlecloud from '../../assets/clients/google-cloud.svg'
+// import google from '../../assets/clients/google.svg'
 import { Link } from "react-router-dom";
 const HeroSection = () => {
   return (
@@ -50,7 +50,7 @@ const HeroSection = () => {
                     </div>
                 </div>
             </div>
-            <div className="mt-12 grid align-middle grid-cols-3 sm:grid-cols-3 md:grid-cols-4">
+            {/* <div className="mt-12 grid align-middle grid-cols-3 sm:grid-cols-3 md:grid-cols-4">
                 <div className="p-4 grayscale transition duration-200 hover:grayscale-0">
                     <img src={airbnb} className="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
                   </div>
@@ -63,7 +63,7 @@ const HeroSection = () => {
                 <div className="p-4 grayscale transition duration-200 hover:grayscale-0">
                     <img src={googlecloud} className="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
                   </div>
-              </div>
+              </div> */}
         </div>
     </Container>
 </div>
