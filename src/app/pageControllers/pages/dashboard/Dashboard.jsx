@@ -1,13 +1,41 @@
 /* eslint-disable no-constant-condition */
 import Sidebar from "./component/Sidebar";
 import Search from "./component/Search";
-import Cards from "./component/cards";
-import { Route, Routes} from "react-router-dom";
+import { Navigate, Route, Routes} from "react-router-dom";
 import Table from "./component/Table";
 import Order from "./component/Order";
 import Productpage from "./component/Productpage";
-
+import { useAtom } from "jotai";
+import { logdin } from "../../../../utils/atoms";
+import { local } from "../../../../utils/utils";
+import {useMutation} from 'react-query';
+import axois from 'axios'
+import { useEffect } from "react";
+import Loadcard from "./component/loadcard";
 const Dashboard = () => {
+  const [islogin,setlogin] = useAtom(logdin)
+  const mutation = useMutation(
+    async () => {
+      return await axois
+        .post("http://localhost:4000/auth/login",{},{headers:{"acesstoken":local.getItem("acesstoken")}})
+        .then((res) => {
+          window.localStorage.setItem("auth",res.data.auth)
+          window.localStorage.setItem("email",res.data.email)
+          window.localStorage.setItem("acesstoken",res.data.acesstoken)
+          setlogin(local.getItem("auth"))
+          return res.data;
+        });
+    },
+  );
+  useEffect(()=>{
+    if (local.getItem("acesstoken")!=null) {
+      mutation.mutate()
+    }
+  },[])
+  
+  if (islogin=="false" || local.auth==null) {
+    return <Navigate to={"/auth/login"} />;
+  }else{ 
   return (
     <div className="h-fit m-10 flex">
       <div
@@ -25,19 +53,17 @@ const Dashboard = () => {
             <Route
               path="/shop"
               element={
-                <div className="grid grid-cols-4 align-middle w-full h-[75vh] flex-wrap overflow-scroll my-10 gap-5">
-                  <Cards />
-                </div>
+                <Loadcard/>
               }
             />
-            <Route path="/listed-product" element={<Table />}/>
-            <Route path="/shop/:id" element={<Productpage/>} />
+            <Route path="/listed-product/*" element={<Table />} />
+            <Route path="/shop/:id" element={<Productpage />} />
             <Route path="/orders" element={<Order />} />
           </Routes>
         </div>
       </div>
     </div>
-  );
+  )}
 };
 
 export default Dashboard;

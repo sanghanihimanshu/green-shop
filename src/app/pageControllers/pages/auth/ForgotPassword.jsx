@@ -1,7 +1,37 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Box from "../../../components/Box"
+import { useState } from "react";
+import { useMutation } from "react-query";
+import axios from "axios";
 
 const ForgotPassword = () => {
+  const navigate = useNavigate()
+
+  const [isdata, setdata] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    password: "",
+  });
+  const mutation = useMutation(
+    async () => {
+      return await axios
+        .post("http://localhost:4000/auth/signup", isdata)
+        .then((res) => {
+          alert(res.data.message);
+          return res.data;
+        });
+    },
+    {
+      onSuccess: () => {
+        return navigate('/auth/login');
+      },
+    }
+  );
+
+  const handlechange = (e) => {
+    setdata({ ...isdata, [e.target.name]: e.target.value });
+  };
   return (
     <Box>
     <div className="relative flex items-center justify-center">
@@ -16,7 +46,7 @@ const ForgotPassword = () => {
           <h2 className="lg:text-2xl font-bold text-gray-900 sm:text-2xl dark:text-white">
             Forgot Your Password
           </h2>
-          <form className="space-y-6" action="#" method="POST">
+          <div className="space-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -29,7 +59,8 @@ const ForgotPassword = () => {
                   id="email"
                   name="email"
                   type="email"
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  value={isdata.name}
+                    onChange={(e) => handlechange(e)}
                   autoComplete="email"
                   required
                   className="block p-4 pb-2 w-full  rounded-full border-0 py-1.5 text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -38,13 +69,18 @@ const ForgotPassword = () => {
             </div>
             <div>
               <button
-                type="submit"
-                className="flex w-full justify-center rounded-full bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:scale-105 duration-[0.5s] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={() => {
+                  mutation.mutate();
+                }}
+                disabled={mutation.status == "loading" ? true : false}
+                className={`flex w-full justify-center rounded-full ${
+                  mutation.status == "loading" ? "bg-black" : ""
+                } bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:scale-105 duration-[0.5s] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
               >
                 Send mail
               </button>
             </div>
-          </form>
+          </div>
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Back to
