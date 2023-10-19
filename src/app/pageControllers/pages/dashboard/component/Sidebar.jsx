@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import {
   BuildingStorefrontIcon,
   ShoppingBagIcon,
-  ClipboardDocumentCheckIcon,
+  // ClipboardDocumentCheckIcon,
   ArrowRightOnRectangleIcon,
 } from "@heroicons/react/24/solid";
 import { local } from "../../../../../utils/utils";
@@ -36,12 +36,12 @@ const Sidebar = () => {
           >
             <ShoppingBagIcon className="h-5 w-5 dark:text-white" />
           </Link>
-          <Link
+          {/* <Link
             to="orders"
             className="h-10 w-10 rounded-full hover:text-white hover:bg-primary/75 flex items-center justify-center duration-300 my-2"
           >
             <ClipboardDocumentCheckIcon className="h-5 w-5 dark:text-white " />
-          </Link>
+          </Link> */}
         </div>
       </div>
       <div className="mt-[280px]">

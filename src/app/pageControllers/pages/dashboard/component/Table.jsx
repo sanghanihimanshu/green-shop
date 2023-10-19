@@ -1,21 +1,28 @@
-/* eslint-disable no-unused-vars */
 import { PencilIcon } from "@heroicons/react/24/solid";
-import { useQuery } from "react-query";
+import { useQuery} from "react-query";
 import { Link, Route, Routes } from "react-router-dom";
 import axois from "axios";
 import { local } from "../../../../../utils/utils";
-import { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { New } from "./New";
 import Edit from "./edit";
+import { useAtom } from "jotai";
+import { sidebox, table } from "../../../../../utils/atoms";
 const Table = () => {
-  const [isbox, setbox] = useState([false,'']);
-  const cardinfo = useQuery(["cards"],
+  const [isbox, setbox] = useAtom(sidebox);
+  const [tabledata,settabledata]=useAtom(table)
+  useQuery(["cards"],
     async () => {
-      return (await axois.post("http://localhost:4000/crops/user", {
+      return await axois.post("http://localhost:4000/crops/user", {
           email: local.getItem("email"),
-        })).data;
-    },[]
+        }).then((res) => {
+          settabledata(res.data)
+          return res.data;
+        })
+        .catch((error) => {
+          alert(error);
+        });
+      }
   );
   return (
     <>
@@ -31,6 +38,7 @@ const Table = () => {
                 </th>
                 <th className="text-start px-4 py-2 font-semibold">Date</th>
                 <th className="text-start px-4 py-2 font-semibold">Status</th>
+                <th className="text-start px-4 py-2 font-semibold">LastBid</th>
                 <th className="text-start px-4 py-2 font-semibold">
                   Base Price
                 </th>
@@ -38,14 +46,14 @@ const Table = () => {
               </tr>
             </thead>
             <tbody>
-              {cardinfo.data == undefined
+              {(tabledata == null || tabledata == [])
                 ? null
-                : cardinfo.data.map((info) => (
+                : tabledata.map((info) => (
                     <>
                       <tr key={info._id} className="border-b-2 border-gray-800">
                         <td className="px-4 py-2">
-                          <Link
-                            to={"shop/" + info._id}
+                          <Link key={info._id}
+                            to={"/dashboard/shop/" + info._id}
                             className="hover:text-secondary"
                           >
                             Show product
@@ -55,16 +63,17 @@ const Table = () => {
                         <td className="px-4 py-2">{info.description}</td>
                         <td className="px-4 py-2">{info.date}</td>
                         <td className="px-4 py-2">{info.status}</td>
+                        <td className="px-4 py-2">{info.lastbid}</td>
                         <td className="px-4 py-2">{info.basePrice}</td>
                         <td className="px-4 py-2">
-                          <Link
+                          <Link key={info._id}
                             onClick={() => {
                               setbox([true,"Edit"]);
                             }}
                             to={"edit/" + info._id}
-                            className="flex items-center justify-center p-3 p bg-primary/80 duration-700 hover:bg-primary rounded-lg cursor-pointer text-white"
+                            className="flex items-center justify-center h-10 w-10 p-3 p bg-primary/80 duration-700 hover:bg-primary rounded-lg cursor-pointer text-white"
                           >
-                            <PencilIcon className="text-white h-3 w-3" />
+                            <PencilIcon key={info._id} className="text-white h-3 w-3" />
                           </Link>
                         </td>
                       </tr>
@@ -88,7 +97,7 @@ const Table = () => {
             </div>
             <div className="absolute top-20 m-5 pb-10">
               <Routes>
-                <Route path="/new" element={<New sedboxsize={setbox}/>} />
+                <Route path="/new" element={<New/>} />
                 <Route path="/edit/:pid" element={<Edit/>} />
               </Routes>
             </div>

@@ -2,28 +2,52 @@ import axios from "axios";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { local } from "../../../../../utils/utils";
-
+import { useAtom } from "jotai";
+import { sidebox, table } from "../../../../../utils/atoms";
 export const New = () => {
+  const tabledata = useAtom(table)[0];
   const [isdata, setdata] = useState({
     name: "",
-    img: "",
+    img: '',
     description: "",
-    status: "",
+    status: "sell",
     basePrice: "",
-    email:local.getItem('email')
   });
-  const cardcreate = useMutation(async () => {
-    return await axios
-      .post("http://localhost:4000/crops/new", isdata)
-      .then((res) => {
-        return res.data;
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  });
-  const handlechange = (e) => {
-    setdata({ ...isdata, [e.target.name]: e.target.value });
+  const [file, setFile] = useState();
+  const [isbox, setbox] = useAtom(sidebox);
+  const cardcreate = useMutation(
+    async () => {
+
+        const formData = new FormData();
+        formData.append("image", file);
+        formData.append("name", isdata.name);
+        formData.append("img", isdata.img);
+        formData.append("description", isdata.description);
+        formData.append("status", isdata.status);
+        formData.append("basePrice", isdata.basePrice);
+        formData.append("email", local.getItem("email"));
+        
+      return await axios
+        .post("http://localhost:4000/crops/new",formData,
+        {
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((res) => {
+          tabledata.push(res.data);
+          return res.data;
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    },
+    {
+      onSuccess: () => {
+        setbox([false, isbox[1]]);
+      },
+    }
+  );
+  const handlechange = (e,value) => {
+    setdata({ ...isdata, [e.target.name]: value });
   };
 
   return (
@@ -43,7 +67,7 @@ export const New = () => {
             autoComplete="name"
             required
             value={isdata.name}
-            onChange={(e) => handlechange(e)}
+            onChange={(e) => handlechange(e,e.target.value)}
             className="block p-4 pb-2 w-full  rounded-full border-0 py-1.5 dark:text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
@@ -64,7 +88,7 @@ export const New = () => {
             autoComplete="description"
             required
             value={isdata.description}
-            onChange={(e) => handlechange(e)}
+            onChange={(e) => handlechange(e,e.target.value)}
             className="block p-4 pb-2 w-full  rounded-full border-0 py-1.5 dark:text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
@@ -84,7 +108,7 @@ export const New = () => {
             autoComplete="basePrice"
             required
             value={isdata.basePrice}
-            onChange={(e) => handlechange(e)}
+            onChange={(e) => handlechange(e,e.target.value)}
             className="block p-4 pb-2 w-full  rounded-full border-0 py-1.5 dark:text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
@@ -103,7 +127,7 @@ export const New = () => {
             autoComplete="status"
             required
             value={isdata.status}
-            onChange={(e) => handlechange(e)}
+            onChange={(e) => handlechange(e,e.target.value)}
             className="block p-5 pb-2 w-full  rounded-full border-0 py-1.5 dark:text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           >
             <option value="sell" className="dark:text-black">
@@ -130,7 +154,10 @@ export const New = () => {
             autoComplete="img"
             required
             value={isdata.img}
-            onChange={(e) => handlechange(e)}
+            onChange={(e) => {
+              handlechange(e,e.target.value);
+              setFile(e.target.files[0])
+            }}
             className="block p-4 pb-2 w-full  rounded-full border-0 py-1.5 dark:text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>

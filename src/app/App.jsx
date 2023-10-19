@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import { Route, Routes} from "react-router";
 import "../App.css";
 import PageController from "./pageControllers/PageController";

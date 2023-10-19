@@ -1,26 +1,35 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/rules-of-hooks */
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { sidebox, table } from "../../../../../utils/atoms";
+import { useAtom } from "jotai";
 
 const Edit = () => {
   const { pid } = useParams();
-  const seturl = useNavigate()
-  const carddelete = useMutation(async () => {
-    return await axios
-      .post("http://localhost:4000/crops/remove", { pid: pid })
-      .then((res) => {
-        
-        return res.data;
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  });
+  const [tabledata, settabledata] = useAtom(table);
+  const [isbox, setbox] = useAtom(sidebox);
+  const carddelete = useMutation(
+    async () => {
+      return await axios
+        .post("http://localhost:4000/crops/remove", { pid: pid })
+        .then((res) => {
+          const newdata = tabledata.filter((item) => item._id != res.data._id);
+          settabledata(newdata);
+          return res.data;
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    },
+    {
+      onSuccess: () => {
+        setbox([false, isbox[1]]);
+      },
+    }
+  );
 
   const [isdata, setdata] = useState({
     name: "",
@@ -57,16 +66,27 @@ const Edit = () => {
       .catch((error) => console.error("Error:", error));
   }, [pid]);
 
-  const cardupdate = useMutation(async () => {
-    return await axios
-      .post("http://localhost:4000/crops/update", isdata)
-      .then((res) => {
-        return res.data;
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  });
+  const cardupdate = useMutation(
+    async () => {
+      return await axios
+        .post("http://localhost:4000/crops/update", isdata)
+        .then(async (res) => {
+          tabledata.forEach((item, index, arr) => {
+            if (tabledata[index]._id == res.data._id) {
+              console.log(tabledata[index].id);
+              tabledata[index] = res.data;
+            }
+          });
+          return res.data;
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    },
+    {
+      onSuccess: () => [setbox([false, isbox[1]])],
+    }
+  );
   const handlechange = (e) => {
     setdata({ ...isdata, [e.target.name]: e.target.value });
   };

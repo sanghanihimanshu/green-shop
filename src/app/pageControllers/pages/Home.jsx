@@ -36,6 +36,7 @@ const Home = () => {
     if (local.getItem("acesstoken")!=null) {
       mutation.mutate()
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   if (islogin=='true') {
     return <Navigate to={'dashboard/shop'}/>

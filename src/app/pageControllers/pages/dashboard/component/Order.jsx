@@ -5,7 +5,7 @@ const Order = () => {
   return (
     <>
       <div className=" overflow-scroll bg-white border-[1px] dark:border-none border-gray-100 dark:bg-slate-800 hover:shadow-2xl hover:shadow-slate-800/10  w-[88vw] h-[75vh] rounded-lg">
-        <table className=" w-[97%] m-4 text-white text-xs ">
+        <table className=" w-[97%] m-4 dark:text-white text-xs ">
           <thead>
             <tr className="text-start border-b-2 border-gray-800">
               <th className="text-start px-4 py-2 font-semibold">Pid</th>
