@@ -3,7 +3,7 @@ import Cards from "./Cards"
 import axois from "axios";
 import { useAtom } from "jotai";
 import { card } from "../../../../../utils/atoms";
-const Loadcard = () => {
+const Loadcards = () => {
  const [cards,setcard] = useAtom(card);
 useQuery(['card'],
     async () => {
@@ -20,4 +20,4 @@ useQuery(['card'],
   ); 
 };
 
-export default Loadcard;
+export default Loadcards;

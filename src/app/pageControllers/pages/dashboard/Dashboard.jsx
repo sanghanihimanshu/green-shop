@@ -11,7 +11,7 @@ import { local } from "../../../../utils/utils";
 import { useMutation } from "react-query";
 import axois from "axios";
 import { useEffect } from "react";
-import Loadcard from "./component/loadcard.js";
+import Loadcards from "./component/Loadcards";
 const Dashboard = () => {
   const [islogin, setlogin] = useAtom(logdin);
   const mutation = useMutation(async () => {
@@ -71,7 +71,7 @@ const Dashboard = () => {
 
           <div className="my-10">
             <Routes>
-              <Route path="/shop" element={<Loadcard />} />
+              <Route path="/shop" element={<Loadcards />} />
               <Route path="/listed-product/*" element={<Table />} />
               <Route path="/shop/:id" element={<Productpage />} />
               {/* <Route path="/orders" element={<Order />} /> */}
