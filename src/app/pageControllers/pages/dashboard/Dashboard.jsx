@@ -3,7 +3,7 @@ import Sidebar from "./component/Sidebar";
 import Search from "./component/Search";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Table from "./component/Table";
-// import Order from "./component/Order";
+import Order from "./component/Order";
 import Productpage from "./component/Productpage";
 import { useAtom } from "jotai";
 import { card, logdin, table } from "../../../../utils/atoms";
@@ -12,6 +12,7 @@ import { useMutation } from "react-query";
 import axois from "axios";
 import { useEffect } from "react";
 import Loadcards from "./component/Loadcards";
+import Profile from "./component/Profile";
 const Dashboard = () => {
   const [islogin, setlogin] = useAtom(logdin);
   const mutation = useMutation(async () => {
@@ -74,7 +75,8 @@ const Dashboard = () => {
               <Route path="/shop" element={<Loadcards />} />
               <Route path="/listed-product/*" element={<Table />} />
               <Route path="/shop/:id" element={<Productpage />} />
-              {/* <Route path="/orders" element={<Order />} /> */}
+              <Route path="/orders" element={<Order />} />
+              <Route path="/profile-setting/:uid" element={<Profile />} />
             </Routes>
           </div>
         </div>

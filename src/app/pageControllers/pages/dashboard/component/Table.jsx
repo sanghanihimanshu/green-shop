@@ -36,11 +36,17 @@ const Table = () => {
                 <th className="text-start px-4 py-2 font-semibold">
                   Discription
                 </th>
+                <th className="text-start px-4 py-2 font-semibold">
+                Quantity
+                </th>
                 <th className="text-start px-4 py-2 font-semibold">Date</th>
                 <th className="text-start px-4 py-2 font-semibold">Status</th>
                 <th className="text-start px-4 py-2 font-semibold">LastBid</th>
                 <th className="text-start px-4 py-2 font-semibold">
                   Base Price
+                </th>
+                <th className="text-start px-4 py-2 font-semibold">
+                  Last bider
                 </th>
                 <th className="text-start px-4 py-2 font-semibold">Edit</th>
               </tr>
@@ -61,10 +67,12 @@ const Table = () => {
                         </td>
                         <td className="px-4 py-2">{info.name}</td>
                         <td className="px-4 py-2">{info.description}</td>
-                        <td className="px-4 py-2">{info.date}</td>
+                        <td className="px-4 py-2">{info.Quantity}</td>
+                        <td className="px-4 py-2">{info.date.split("T")[0]}</td>
                         <td className="px-4 py-2">{info.status}</td>
                         <td className="px-4 py-2">{info.lastbid}</td>
                         <td className="px-4 py-2">{info.basePrice}</td>
+                        <td className="px-4 py-2">{info.lastbider}</td>
                         <td className="px-4 py-2">
                           <Link key={info._id}
                             onClick={() => {

@@ -2,10 +2,12 @@ import { BanknotesIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useMutation } from "react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { local } from "../../../../../utils/utils";
 
 const Productpage = () => {
   const { id } = useParams();
+  const navigateto = useNavigate()
   const [condition, setcondition] = useState(false);
   const [data, setproduct] = useState({
     name: "",
@@ -14,6 +16,8 @@ const Productpage = () => {
     status: "",
     lastbid: "",
     basePrice: "",
+    lastbider:"",
+    Quantity:0
   });
   useEffect(() => {
     fetch("http://localhost:4000/crops/product/" + id, {
@@ -32,6 +36,8 @@ const Productpage = () => {
           status: data.status,
           lastbid: data.lastbid,
           basePrice: data.basePrice,
+          lastbider:data.lastbider,
+          Quantity:data.Quantity
         });
       })
       .catch((error) => console.error("Error:", error));
@@ -41,21 +47,31 @@ const Productpage = () => {
       .post("http://localhost:4000/crops/makebid", {
         id: id,
         amount: data.lastbid,
+        email: local.getItem('email')
       })
-      .then(async (res) => {
-        return res.data;
+      .then(async (data) => {
+        setproduct({
+          name: data.name,
+          img: data.img,
+          description: data.description,
+          status: data.status,
+          lastbid: data.lastbid,
+          basePrice: data.basePrice,
+          lastbider:data.lastbider,
+          Quantity:data.Quantity
+        });
+        return data.data;
       })
       .catch((error) => {
         alert(error);
       });
   });
   const handlechange = (e, value) => {
-    if (value > data.lastbid) {
-      setproduct({ ...data, [e.target.name]: value });
+    setproduct({ ...data, [e.target.name]: value });
+    if (value > data.lastbid && value > data.basePrice) {
       setcondition(true);
     } else {
       setcondition(false);
-      alert("plese set amount morethen baseprice or last bid");
     }
   };
   return (
@@ -86,8 +102,10 @@ const Productpage = () => {
           />
           <button
             onClick={() => {
-              console.log("setbid");
+              alert("it cant be revart")
               amountupdate.mutate();
+              setcondition(false)
+              navigateto("/dashboard/orders")
             }}
             disabled={condition ? false : true}
             className="dark:bg-white rounded-xl dark:text-gray-900 dark:hover:bg-gray-100 focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none"
@@ -103,13 +121,16 @@ const Productpage = () => {
               data Code: {id}
             </p>
             <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
-              Quantity: {""}
+              Quantity: {data.Quantity}
             </p>
             <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
               Last Bid: {data.lastbid}
             </p>
             <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
               Base Price: {data.basePrice}
+            </p>
+            <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
+              Last Bider: {data.lastbider}
             </p>
           </div>
         </div>

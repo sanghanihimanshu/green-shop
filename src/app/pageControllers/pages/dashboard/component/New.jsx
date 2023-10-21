@@ -12,6 +12,7 @@ export const New = () => {
     description: "",
     status: "sell",
     basePrice: "",
+    Quantity:0
   });
   const [file, setFile] = useState();
   const [isbox, setbox] = useAtom(sidebox);
@@ -26,6 +27,7 @@ export const New = () => {
         formData.append("status", isdata.status);
         formData.append("basePrice", isdata.basePrice);
         formData.append("email", local.getItem("email"));
+        formData.append("Quantity",isdata.Quantity);
         
       return await axios
         .post("http://localhost:4000/crops/new",formData,
@@ -108,6 +110,26 @@ export const New = () => {
             autoComplete="basePrice"
             required
             value={isdata.basePrice}
+            onChange={(e) => handlechange(e,e.target.value)}
+            className="block p-4 pb-2 w-full  rounded-full border-0 py-1.5 dark:text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div>
+        <label
+          htmlFor="Quantity"
+          className="block text-sm font-medium leading-6text-gray-700 dark:text-gray-300"
+        >
+          Quantity
+        </label>
+        <div className="mt-2">
+          <input
+            id="Quantity"
+            name="Quantity"
+            type="tel"
+            autoComplete="Quantity"
+            required
+            value={isdata.Quantity}
             onChange={(e) => handlechange(e,e.target.value)}
             className="block p-4 pb-2 w-full  rounded-full border-0 py-1.5 dark:text-white dark:bg-transparent shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
