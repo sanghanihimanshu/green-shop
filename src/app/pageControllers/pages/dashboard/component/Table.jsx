@@ -13,7 +13,7 @@ const Table = () => {
   const [tabledata,settabledata]=useAtom(table)
   useQuery(["cards"],
     async () => {
-      return await axois.post("http://localhost:4000/crops/user", {
+      return await axois.post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/user", {
           email: local.getItem("email"),
         }).then((res) => {
           settabledata(res.data)

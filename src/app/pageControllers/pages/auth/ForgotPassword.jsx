@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   const mutation = useMutation(
     async () => {
       return await axios
-        .post("http://localhost:4000/auth/signup", isdata)
+        .post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/auth/signup", isdata)
         .then((res) => {
           alert(res.data.message);
           return res.data;

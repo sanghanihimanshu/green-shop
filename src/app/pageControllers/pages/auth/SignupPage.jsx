@@ -15,7 +15,7 @@ const Signup = () => {
     async () => {
      
         return await axios
-        .post("http://localhost:4000/auth/signup", isdata)
+        .post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/auth/signup", isdata)
         .then((res) => {
           window.localStorage.setItem("auth",res.data.auth)
           window.localStorage.setItem("email",res.data.email)

@@ -16,7 +16,7 @@ const Login = () => {
   const mutation = useMutation(
     async () => {
       return await axios
-        .post("http://localhost:4000/auth/login", isdata)
+        .post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/auth/login", isdata)
         .then((res) => {
           window.localStorage.setItem("auth",res.data.auth)
           window.localStorage.setItem("email",res.data.email)
