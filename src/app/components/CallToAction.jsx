@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+import { Link } from "react-router-dom";
 import Container from "./Container";
 const CallToAction = () => {
   return (
@@ -16,7 +18,7 @@ const CallToAction = () => {
               loading="lazy"
               width="400"
               height="400"
-              src="./images/avatars/avatar.webp"
+              src="https://www.thestatesman.com/wp-content/uploads/2020/05/farmer.jpg"
               alt="member photo"
               className="h-8 w-8 rounded-full object-cover"
             />
@@ -24,7 +26,7 @@ const CallToAction = () => {
               loading="lazy"
               width="200"
               height="200"
-              src="./images/avatars/avatar-2.webp"
+              src="https://motionarray.imgix.net/preview-963051-Ndn2TJ6605-high_0012.jpg"
               alt="member photo"
               className="h-12 w-12 rounded-full object-cover"
             />
@@ -32,7 +34,7 @@ const CallToAction = () => {
               loading="lazy"
               width="200"
               height="200"
-              src="./images/avatars/avatar-3.webp"
+              src="https://www.ontariopork.on.ca/Portals/16/EasyDNNnews/57/17graham-learn-main.jpg"
               alt="member photo"
               className="z-10 h-16 w-16 rounded-full object-cover"
             />
@@ -40,7 +42,7 @@ const CallToAction = () => {
               loading="lazy"
               width="200"
               height="200"
-              src="./images/avatars/avatar-4.webp"
+              src="https://static.manitobacooperator.ca/wp-content/uploads/2018/03/woman-farmer-591418300-Thinkstock.jpg"
               alt="member photo"
               className="relative h-12 w-12 rounded-full object-cover"
             />
@@ -48,7 +50,7 @@ const CallToAction = () => {
               loading="lazy"
               width="200"
               height="200"
-              src="./images/avatars/avatar-1.webp"
+              src="https://thumbs.dreamstime.com/b/indian-farmer-india-portrait-traditional-turban-his-head-66694207.jpg"
               alt="member photo"
               className="h-8 w-8 rounded-full object-cover"
             />
@@ -58,26 +60,25 @@ const CallToAction = () => {
               Get Started now
             </h1>
             <p className="text-center text-xl text-gray-600 dark:text-gray-300">
-              Be part of millions people around the world using tailus in modern
-              User Interfaces.
+            The "Get Started Now" page serves as a user-friendly gateway to begin your journey with "GreenShop," offering a simple and intuitive onboarding process.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-              <a
-                href="#"
+              <Link
+                to="auth/login"
                 className="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:bg-primary before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max"
               >
                 <span className="relative text-base font-semibold text-white dark:text-dark">
                   Get Started
                 </span>
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="learnmore"
                 className="relative flex h-12 w-full items-center justify-center px-8 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-primary/10 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 sm:w-max"
               >
                 <span className="relative text-base font-semibold text-primary dark:text-white">
                   More about
                 </span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

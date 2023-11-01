@@ -176,7 +176,8 @@ const AppFooter = () => {
             </div>
             <div className="m-auto mt-16 w-10/12 space-y-6 text-center sm:mt-auto sm:w-5/12 sm:text-left">
               <span className="block text-gray-500 dark:text-gray-400">
-                We change the way UI components librairies are used
+                Our privacy policy ensures the protection of your personal data
+                and adherence to all applicable data protection regulations.
               </span>
 
               <span className="block text-gray-500 dark:text-gray-400">
@@ -195,7 +196,10 @@ const AppFooter = () => {
 
               <span className="block text-gray-500 dark:text-gray-400">
                 Need help?{" "}
-                <a href="#" className="font-semibold text-gray-600 dark:text-white">
+                <a
+                  href="#"
+                  className="font-semibold text-gray-600 dark:text-white"
+                >
                   {" "}
                   Contact Us
                 </a>

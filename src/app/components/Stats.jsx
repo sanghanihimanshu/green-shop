@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Container from "./Container";
 import pie from "../../assets/pie.svg";
 const Stats = () => {
@@ -36,15 +37,17 @@ const Stats = () => {
           </div>
           <div className="md:7/12 lg:w-1/2">
             <h2 className="text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
-              Nuxt development is carried out by passionate developers
+              Stay Informed with Real-Time Data: Latest Stats Page Unveils Key
+              Insights.
             </h2>
             <p className="my-8 text-gray-600 dark:text-gray-300">
-              Nobis minus voluptatibus pariatur dignissimos libero quaerat iure
-              expedita at? Asperiores nemo possimus nesciunt dicta veniam
-              aspernatur quam mollitia. <br /> <br /> Vitae error, quaerat
-              officia delectus voluptatibus explicabo quo pariatur impedit, at
-              reprehenderit aliquam a ipsum quas voluptatem. Quo pariatur
-              asperiores eum amet.
+              The "Latest Stats" page on "GreenShop" provides up-to-date,
+              data-driven insights on crop trends, market prices, and
+              sustainability metrics.<br/><br/> Users can access comprehensive statistics
+              and charts, empowering them to make informed decisions on crop
+              selling and buying. This feature enhances transparency and offers
+              valuable market intelligence for farmers, buyers, and
+              sustainability advocates.
             </p>
             <div className="divide-y space-y-4 divide-gray-100 dark:divide-gray-800">
               <div className="mt-8 flex gap-4 md:items-center">
@@ -67,7 +70,7 @@ const Stats = () => {
                     Chat Anytime
                   </h4>
                   <p className="text-gray-500 dark:text-gray-400">
-                    Asperiores nemo possimus nesciunt quam mollitia.
+                    User can connect with support team with any time
                   </p>
                 </div>
               </div>
@@ -91,7 +94,7 @@ const Stats = () => {
                     Real Time Location
                   </h4>
                   <p className="text-gray-500 dark:text-gray-400">
-                    Asperiores nemo possimus nesciunt quam mollitia.
+                    User can see location information of crops
                   </p>
                 </div>
               </div>
