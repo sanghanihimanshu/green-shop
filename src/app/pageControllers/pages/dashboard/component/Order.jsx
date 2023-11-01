@@ -9,7 +9,7 @@ const Order = () => {
   const [tabledata,settabledata]=useState()
   useQuery(["cardsorder"],
     async () => {
-      return await axios.post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/order", {
+      return await axios.post("http://localhost:4000/crops/order", {
           email: local.getItem("email"),
         }).then((res) => {
           settabledata(res.data)

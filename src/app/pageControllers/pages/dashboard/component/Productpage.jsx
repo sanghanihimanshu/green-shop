@@ -20,7 +20,7 @@ const Productpage = () => {
     Quantity:0
   });
   useEffect(() => {
-    fetch("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/product/" + id, {
+    fetch("http://localhost:4000/crops/product/" + id, {
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
@@ -44,7 +44,7 @@ const Productpage = () => {
   }, [id]);
   const amountupdate = useMutation(async () => {
     return await axios
-      .post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/makebid", {
+      .post("http://localhost:4000/crops/makebid", {
         id: id,
         amount: data.lastbid,
         email: local.getItem('email')

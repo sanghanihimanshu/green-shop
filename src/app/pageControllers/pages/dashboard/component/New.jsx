@@ -30,7 +30,7 @@ export const New = () => {
         formData.append("Quantity",isdata.Quantity);
         
       return await axios
-        .post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/new",formData,
+        .post("http://localhost:4000/crops/new",formData,
         {
             headers: { "Content-Type": "multipart/form-data" },
         })

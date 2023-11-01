@@ -14,7 +14,7 @@ const Edit = () => {
   const carddelete = useMutation(
     async () => {
       return await axios
-        .post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/remove", { pid: pid })
+        .post("http://localhost:4000/crops/remove", { pid: pid })
         .then((res) => {
           const newdata = tabledata.filter((item) => item._id != res.data._id);
           settabledata(newdata);
@@ -41,7 +41,7 @@ const Edit = () => {
   });
 
   useEffect(() => {
-    fetch("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/user/" + pid, {
+    fetch("http://localhost:4000/crops/user/" + pid, {
       method: "POST",
       body: JSON.stringify({
         email: window.localStorage.getItem("email"),
@@ -69,7 +69,7 @@ const Edit = () => {
   const cardupdate = useMutation(
     async () => {
       return await axios
-        .post("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/crops/update", isdata)
+        .post("http://localhost:4000/crops/update", isdata)
         .then(async (res) => {
           tabledata.forEach((item, index, arr) => {
             if (tabledata[index]._id == res.data._id) {

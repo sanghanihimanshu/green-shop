@@ -9,7 +9,7 @@ const Profile = () => {
     const [profile ,setprofile]=useState({})
    useQuery(["profile"],
     async () => {
-      return await axios.get("https://green-shop-api-mysoaceh-gmailcom-himanshu-s-projects.vercel.app/auth/profile/"+uid).then((res) => {
+      return await axios.get("http://localhost:4000/auth/profile/"+uid).then((res) => {
         setprofile(res.data)
           return res.data;
         })
