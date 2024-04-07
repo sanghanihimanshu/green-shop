@@ -15,7 +15,7 @@ const Signup = () => {
     async () => {
      
         return await axios
-        .post("http://localhost:4000/auth/signup", isdata)
+        .post(import.meta.env.VITE_URL_API+"/auth/signup", isdata)
         .then((res) => {
           window.localStorage.setItem("auth",res.data.auth)
           window.localStorage.setItem("email",res.data.email)

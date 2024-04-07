@@ -18,7 +18,7 @@ const Dashboard = () => {
   const mutation = useMutation(async () => {
     return await axois
       .post(
-        "http://localhost:4000/auth/login",
+        import.meta.env.VITE_URL_API+"/auth/login",
         {},
         { headers: { acesstoken: local.getItem("acesstoken") } }
       )

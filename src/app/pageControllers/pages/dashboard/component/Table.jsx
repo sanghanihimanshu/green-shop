@@ -5,7 +5,7 @@ import axois from "axios";
 import { local } from "../../../../../utils/utils";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { New } from "./New";
-import Edit from "./edit";
+import Edit from "./Edit";
 import { useAtom } from "jotai";
 import { sidebox, table } from "../../../../../utils/atoms";
 const Table = () => {
@@ -13,7 +13,7 @@ const Table = () => {
   const [tabledata,settabledata]=useAtom(table)
   useQuery(["cards"],
     async () => {
-      return await axois.post("http://localhost:4000/crops/user", {
+      return await axois.post(import.meta.env.VITE_URL_API+"/crops/user", {
           email: local.getItem("email"),
         }).then((res) => {
           settabledata(res.data)

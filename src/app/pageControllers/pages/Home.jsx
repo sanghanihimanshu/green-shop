@@ -17,7 +17,7 @@ const Home = () => {
   const mutation = useMutation(
     async () => {
       return await axois
-        .post("http://localhost:4000/auth/login",{},{headers:{"acesstoken":local.getItem("acesstoken")}})
+        .post(import.meta.env.VITE_URL_API+"/auth/login",{},{headers:{"acesstoken":local.getItem("acesstoken")}})
         .then((res) => {
           window.localStorage.setItem("auth",res.data.auth)
           window.localStorage.setItem("email",res.data.email)

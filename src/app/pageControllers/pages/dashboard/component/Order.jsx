@@ -9,15 +9,16 @@ const Order = () => {
   const [tabledata,settabledata]=useState()
   useQuery(["cardsorder"],
     async () => {
-      return await axios.post("http://localhost:4000/crops/order", {
+      return await axios.post(import.meta.env.VITE_URL_API+"/crops/order", {
           email: local.getItem("email"),
         }).then((res) => {
           settabledata(res.data)
-          return res.data;
         })
         .catch((error) => {
           alert(error);
         });
+      },{
+        enabled:true
       }
   );
   return (

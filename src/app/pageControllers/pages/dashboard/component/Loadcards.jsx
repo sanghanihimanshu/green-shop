@@ -7,7 +7,7 @@ const Loadcards = () => {
  const [cards,setcard] = useAtom(card);
 useQuery(['card'],
     async () => {
-      return await axois.get("http://localhost:4000/crops/all").then((res)=>{
+      return await axois.get(import.meta.env.VITE_URL_API+"/crops/all").then((res)=>{
       setcard(res.data)
       }).catch((e)=>[
         alert(e)

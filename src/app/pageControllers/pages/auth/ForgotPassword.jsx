@@ -16,7 +16,7 @@ const ForgotPassword = () => {
   const mutation = useMutation(
     async () => {
       return await axios
-        .post("http://localhost:4000/auth/signup", isdata)
+        .post(import.meta.env.VITE_URL_API+"/auth/signup", isdata)
         .then((res) => {
           alert(res.data.message);
           return res.data;

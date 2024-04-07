@@ -9,7 +9,7 @@ const Profile = () => {
     const [profile ,setprofile]=useState({})
    useQuery(["profile"],
     async () => {
-      return await axios.get("http://localhost:4000/auth/profile/"+uid).then((res) => {
+      return await axios.get(import.meta.env.VITE_URL_API+"/auth/profile/"+uid).then((res) => {
         setprofile(res.data)
           return res.data;
         })

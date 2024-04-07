@@ -16,7 +16,7 @@ const Search = (props) => {
   const Handlesearch = useMutation(async () => {
     return await axios
       .post(
-        `http://localhost:4000/crops/search?searchquery=` + searchinput,
+        `${import.meta.env.VITE_URL_API}/crops/search?searchquery=` + searchinput,
         tabname.pathname.split("/")[2] != "shop"
           ? {
               email: local.getItem("email"),

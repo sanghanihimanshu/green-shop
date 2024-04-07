@@ -14,7 +14,7 @@ const Edit = () => {
   const carddelete = useMutation(
     async () => {
       return await axios
-        .post("http://localhost:4000/crops/remove", { pid: pid })
+        .post(import.meta.env.VITE_URL_API+"/crops/remove", { pid: pid })
         .then((res) => {
           const newdata = tabledata.filter((item) => item._id != res.data._id);
           settabledata(newdata);
@@ -41,7 +41,7 @@ const Edit = () => {
   });
 
   useEffect(() => {
-    fetch("http://localhost:4000/crops/user/" + pid, {
+    fetch(import.meta.env.VITE_URL_API+"/crops/user/" + pid, {
       method: "POST",
       body: JSON.stringify({
         email: window.localStorage.getItem("email"),
@@ -69,7 +69,7 @@ const Edit = () => {
   const cardupdate = useMutation(
     async () => {
       return await axios
-        .post("http://localhost:4000/crops/update", isdata)
+        .post(import.meta.env.VITE_URL_API+"/crops/update", isdata)
         .then(async (res) => {
           tabledata.forEach((item, index, arr) => {
             if (tabledata[index]._id == res.data._id) {

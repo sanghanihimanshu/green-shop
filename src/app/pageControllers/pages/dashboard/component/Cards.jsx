@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
-import Badge from "./badge";
+import Badge from "./Badge";
 import { Link } from "react-router-dom";
 
 const Cards = (props) => {
